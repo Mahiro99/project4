@@ -55,8 +55,8 @@ def generateTDM(featureVec, stemmed):
     for para in stemmed:
         for word in para:
             if word in featureVec:
-                j = featureVec.index(word)
-                TDM[r][j] += 1
+                c = featureVec.index(word)
+                TDM[r][c] += 1
         r += 1
     tdm = open("tdm.csv", "w")
     colA = "Keyword Set,"
