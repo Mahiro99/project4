@@ -1,4 +1,5 @@
 import math
+import random
 # variables
 max_rd = 40
 alpha = 6
@@ -44,7 +45,6 @@ with open("tdm.csv", "r") as f:
 # FCAN Algorithm
 # Intialized with first datapoint
 clusters = [{"value": patterns[0], "included_patterns":[0]}]
-
 for index in range(1, len(patterns)):
     pattern = patterns[index]
     # Sort clusters by ED
