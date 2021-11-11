@@ -1,5 +1,6 @@
 import re
 from Porter_Stemmer_Python import PorterStemmer
+import pandas as pd
 
 
 def partOne(stopperFile, paragraphFile):
@@ -26,27 +27,28 @@ def partOne(stopperFile, paragraphFile):
                 for word in stemmed:
                     if word not in featureVec:
                         featureVec.append(word)
-            # getMostFrequent(stemmed)
             stemmed = []
     # print(finalStem)
+    getMostFrequent(finalStem)
     generateTDM(featureVec, finalStem)
 
 
 def getMostFrequent(stemmed):
     mostFreq = {}
-
-    for elem in stemmed:
-        if elem in mostFreq:
-            mostFreq[elem] += 1
-        else:
-            mostFreq[elem] = 1
+    for para in stemmed:
+        for elem in para:
+            if elem in mostFreq:
+                mostFreq[elem] += 1
+            else:
+                mostFreq[elem] = 1
     mostFreq = {k: v for k, v in mostFreq.items() if v != 1}
-
-    # print("Frequent Repetitive words: ", mostFreq, '\n')
+    df = pd.DataFrame(mostFreq.items())
+    df.to_csv('frequentWords.csv', index=False)
+    print("Frequent Repetitive words: ", df, '\n')
 
 
 def generateTDM(featureVec, stemmed):
-    print(featureVec)
+    # print(featureVec)
     r = 0
     height = len(stemmed)
     width = len(featureVec)
