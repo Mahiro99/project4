@@ -33,9 +33,9 @@ def partOne(stopperFile, paragraphFile):
     generateTDM(featureVec, finalStem)
 
 
-def getMostFrequent(stemmed):
+def getMostFrequent(finalStem):
     mostFreq = {}
-    for para in stemmed:
+    for para in finalStem:
         for elem in para:
             if elem in mostFreq:
                 mostFreq[elem] += 1
